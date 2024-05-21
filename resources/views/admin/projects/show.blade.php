@@ -10,8 +10,9 @@
         <section class="py-5">
             <div class="container d-flex ">
                 <img class="pe-5" src="{{ $project->image }}" alt="">
-                <a href="{{$project->project}}"></a>
-                <p class="text-light py-5">{{ $project->description }}</p>
+                <div>
+                    <p class="text-light py-5">{{ $project->description }}</p>
+                </div>
             </div>
         </section>
     </section>

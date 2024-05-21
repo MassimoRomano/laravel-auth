@@ -30,7 +30,7 @@
                                 <td>{{ $project->title }}</td>
                                 <td>{{$project->project}}</td>
                                 <td>
-                                    <a class="btn btn-danger" href="{{route('admin.projects.show', $project->id)}}"><span>View</span></a>
+                                    <a class="btn btn-danger" href="{{route('admin.projects.show', $project)}}"><span>View</span></a>
 
                                 </td>
                             </tr>

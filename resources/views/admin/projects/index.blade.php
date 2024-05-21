@@ -4,7 +4,7 @@
     <header class="py-3 bg-dark text-light">
         <div class="container d-flex align-items-center justify-content-between">
             <h1 class="text-danger">Projects</h1>
-            {{-- <a class="btn btn-danger" href="{{route('admin.posts.create')}}">New Post</a> --}}
+            <a class="btn btn-danger" href="{{route('admin.projects.create')}}">New Project</a>
         </div>
     </header>
     <section class="py-5">

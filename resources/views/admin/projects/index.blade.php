@@ -30,9 +30,16 @@
                                 <td>{{ $project->title }}</td>
                                 <td>{{$project->project}}</td>
                                 <td>
-                                    <a class="btn btn-danger" href="{{route('admin.projects.show', $project)}}"><span>View</span></a>
-
+                                    <a class="btn btn-success" href="{{route('admin.projects.show', $project)}}">
+                                        <i class="fas fa-eye fa-xs fa-fw"></i>
+                                        <span style="font-size: 0.7rem" class="text-uppercase">View</span>
+                                    </a>
+                                    <a class="btn btn-primary" href="{{route('admin.projects.edit', $project)}}">
+                                        <i class="fas fa-pencil fa-xs fa-fw"></i>
+                                        <span style="font-size: 0.7rem" class="text-uppercase">Edit</span>
+                                    </a>
                                 </td>
+                                
                             </tr>
                         @empty
 

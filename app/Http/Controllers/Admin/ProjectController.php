@@ -65,7 +65,7 @@ class ProjectController extends Controller
         $slug = Str::slug($request->title, '-');
         $validated['slug'] = $slug;
         $project->update($validated);
-        return to_route('admin.projects.index');
+        return to_route('admin.projects.index')->with('message',"Post $project->title fix successfully");
     }
 
     /**
@@ -73,6 +73,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return to_route('admin.posts.index')->with('message', "Post $project->title deleted successfully");
     }
 }

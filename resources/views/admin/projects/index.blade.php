@@ -83,19 +83,13 @@
                                                         </button>
 
                                                     </form>
-
-
-
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
                                 </td>
-
                             </tr>
                         @empty
-
                             <tr class="">
                                 <td scope="row">No post yet</td>
 

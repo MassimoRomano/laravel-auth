@@ -3,7 +3,7 @@
 @section('content')
     <header class="py-3 bg-dark text-light">
         <div class="container d-flex align-items-center justify-content-between">
-            <h1 class="text-danger">Posts</h1>
+            <h1 class="text-danger">Projects</h1>
             {{-- <a class="btn btn-danger" href="{{route('admin.posts.create')}}">New Post</a> --}}
         </div>
     </header>
@@ -29,6 +29,10 @@
                                 <td><img width="120" src="{{ $project->image }}" alt=""></td>
                                 <td>{{ $project->title }}</td>
                                 <td>{{$project->project}}</td>
+                                <td>
+                                    <a class="btn btn-danger" href="{{route('admin.projects.show', $project->id)}}"><span>View</span></a>
+
+                                </td>
                             </tr>
                         @empty
 

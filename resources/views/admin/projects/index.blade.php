@@ -11,40 +11,51 @@
     <section class="py-5">
         <div class="container">
             <div class="table-responsive">
-                <table class="table table-dark">
+                <table class="table table-dark align-middle">
                     <thead class="text-center">
                         <tr>
                             <th class="text-danger" scope="col">ID</th>
                             <th class="text-danger" scope="col">Image</th>
                             <th class="text-danger" scope="col">Title</th>
                             <th class="text-danger" scope="col">Project</th>
-                            <th class="text-danger" scope="col">Action</th>
+                            <th class="text-danger" scope="col">View</th>
+                            <th class="text-danger" scope="col">Edit</th>
+                            <th class="text-danger" scope="col">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         {{-- @dd($projects) --}}
 
                         @forelse ($projects as $project)
-                            <tr class=" text-center">
+                            <tr class="text-center">
                                 <td scope="row">{{ $project->id }}</td>
-                                <td><img width="120" src="{{ $project->image }}" alt=""></td>
-                                <td>{{ $project->title }}</td>
-                                <td>{{ $project->project }}</td>
                                 <td>
+                                    @if (Str::startsWith($project->image, 'https://'))
+                                        <img  width="120" src="{{ $project->image }}" alt="">
+                                    @else
+                                        <img  width="120" src="{{ asset('storage/' . $project->image) }}" alt="">
+                                    @endif
+                                </td>
+                                <td>{{ $project->title }}</td>
+                                <td class="">{{ $project->project }}</td>
+                                <td class="">
                                     <a class="btn btn-success" href="{{ route('admin.projects.show', $project) }}">
                                         <i class="fas fa-eye fa-xs fa-fw"></i>
-                                        <span style="font-size: 0.7rem" class="text-uppercase">View</span>
+                                        <span style="font-size: 0.7rem" class="text-uppercase"></span>
                                     </a>
-                                    <a class="btn btn-primary" href="{{ route('admin.projects.edit', $project) }}">
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary mx-1" href="{{ route('admin.projects.edit', $project) }}">
                                         <i class="fas fa-pencil fa-xs fa-fw"></i>
-                                        <span style="font-size: 0.7rem" class="text-uppercase">Edit</span>
+                                        <span style="font-size: 0.7rem" class="text-uppercase"></span>
                                     </a>
+                                </td>
 
-
+                                <td>
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#modal-{{ $project->id }}">
                                         <i class="fas fa-trash fa-xs fa-fw"></i>
-                                        <span style="font-size: 0.7rem" class="text-uppercase">Delete</span>
+                                        <span style="font-size: 0.7rem" class="text-uppercase"></span>
                                     </button>
 
                                     <!-- Modal Body -->
@@ -68,8 +79,7 @@
 
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger"
-                                                        data-bs-dismiss="modal">
+                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
                                                         Close
                                                     </button>
 
@@ -98,7 +108,7 @@
                     </tbody>
                 </table>
             </div>
-            {{$projects->links('pagination::bootstrap-5')}}
+            {{ $projects->links('pagination::bootstrap-5') }}
         </div>
     </section>
 @endsection

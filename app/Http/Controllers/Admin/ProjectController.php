@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProjectController extends Controller
@@ -15,7 +16,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view("admin.projects.index",['projects'=>Project::orderBy('id')->paginate(5)]);
+        return view("admin.projects.index", ['projects' => Project::orderBy('id')->paginate(5)]);
     }
 
     /**
@@ -35,6 +36,12 @@ class ProjectController extends Controller
 
         $slug = Str::slug($request->title, '-');
         $validated['slug'] = $slug;
+
+        if ($request->hasFile('image')) {
+            $image_path = Storage::put('uploads', $validated['image']);
+            $validated['image'] = $image_path;
+        }
+
         Project::create($validated);
         return to_route('admin.projects.index');
     }
@@ -44,7 +51,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-       return view('admin.projects.show', compact('project'));
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
@@ -64,8 +71,17 @@ class ProjectController extends Controller
 
         $slug = Str::slug($request->title, '-');
         $validated['slug'] = $slug;
+
+        if ($request->hasFile('image')) {
+            if ($project->image) {
+                Storage::delete($project->image);
+                $image_path = Storage::put('uploads', $validated['image']);
+                $validated['image'] = $image_path;
+            }
+        }
+
         $project->update($validated);
-        return to_route('admin.projects.index')->with('message',"Post $project->title fix successfully");
+        return to_route('admin.projects.index')->with('message', "Post $project->title fix successfully");
     }
 
     /**
@@ -73,6 +89,10 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if ($project->image) {
+            Storage::delete($project->image);
+        }
+
         $project->delete();
         return to_route('admin.projects.index')->with('message', "Post $project->title deleted successfully");
     }

@@ -13,7 +13,7 @@
 
     <div class="container py-5">
 
-        <form action="{{ route('admin.projects.store') }}" method="post">
+        <form action="{{ route('admin.projects.store') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-3">
@@ -30,7 +30,7 @@
 
             <div class="mb-3">
                 <label for="cover_image" class="form-label">Image</label>
-                <input type="text" class="form-control @error('image') is-invalid @enderror" name="image"
+                <input type="file" class="form-control @error('image') is-invalid @enderror" name="image"
                     id="image" aria-describedby="imageHelper" placeholder="Inserisci url image" />
                 <small id="imageHelper" class="form-text text-muted">Type a url_image for this post</small>
                 @error('image')

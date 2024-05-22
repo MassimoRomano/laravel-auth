@@ -8,8 +8,12 @@
             </div>
         </header>
         <section class="py-5">
-            <div class="container d-flex ">
-                <img class="pe-5" src="{{ $project->image }}" alt="">
+            <div class="container d-flex gap-5">
+                @if (Str::startsWith($project->image, 'https://'))
+                    <img src="{{ $project->image }}" alt="">
+                @else
+                    <img width="500" src="{{ asset('storage/' . $project->image) }}" alt="">
+                @endif
                 <div>
                     <p class="text-light py-5">{{ $project->description }}</p>
                 </div>

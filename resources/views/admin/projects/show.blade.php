@@ -16,6 +16,9 @@
                 @endif
                 <div>
                     <p class="text-light py-5">{{ $project->description }}</p>
+                    <div class="metadata">
+                        <strong class="text-danger">Type:</strong> <span class="text-light">{{$project->type ? $project->type->name : 'Nessun Tipo'}}</span>
+                    </div>
                 </div>
             </div>
         </section>

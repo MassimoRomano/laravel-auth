@@ -37,8 +37,8 @@
                                     @endif
                                 </td>
                                 <td>{{ $project->title }}</td>
-                                <td class="">{{ $project->project }}</td>
-                                <td class="">
+                                <td >{{ $project->project }}</td>
+                                <td>
                                     <a class="btn btn-success" href="{{ route('admin.projects.show', $project) }}">
                                         <i class="fas fa-eye fa-xs fa-fw"></i>
                                         <span style="font-size: 0.7rem" class="text-uppercase"></span>

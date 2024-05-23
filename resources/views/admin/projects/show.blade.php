@@ -15,6 +15,10 @@
                     <img width="500" src="{{ asset('storage/' . $project->image) }}" alt="">
                 @endif
                 <div>
+                    <a class="btn btn-primary mx-1" href="{{ route('admin.projects.edit', $project) }}">
+                        <i class="fas fa-pencil fa-xs fa-fw"></i>
+                        <span style="font-size: 0.7rem" class="text-uppercase fs-6">Edit</span>
+                    </a>
                     <p class="text-light py-5">{{ $project->description }}</p>
                     <div class="metadata">
                         <strong class="text-danger">Type:</strong> <span class="text-light">{{$project->type ? $project->type->name : 'Nessun Tipo'}}</span>
